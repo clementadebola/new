@@ -9,7 +9,8 @@ const HeaderContainer = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: rgba(0, 0, 0, 0.8);
+//   background-color: rgba(0, 0, 0, 0.8);
+   background-color: #080608;
   position: relative;
 `;
 

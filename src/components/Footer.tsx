@@ -3,7 +3,8 @@ import styled from 'styled-components';
 
 const FooterContainer = styled.footer`
   padding: 2rem;
-  background-color: #000;
+  background-color: #080608;
+//    background-color: #000;
   text-align: center;
 `;
 
