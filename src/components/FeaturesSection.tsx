@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import mockup from '../assets/mockup.png';
 
 const FeatureSectionContainer = styled.section`
-  background-color: #111;
+ background-color: #080608;
   color: #fff;
   height: 300vh;
   position: relative;

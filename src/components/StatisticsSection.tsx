@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 const StatisticsContainer = styled.section`
   padding: 4rem 2rem;
-  background-color: #222;
+  background-color: #080608;
 `;
 
 const StatisticsTitle = styled(motion.h2)`
