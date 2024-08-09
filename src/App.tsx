@@ -10,7 +10,7 @@ import SupportPage from './pages/SupportPage';
 import AboutPage from './pages/AboutPage';
 
 const AppContainer = styled.div`
-  background-color: #000;
+  background-color: #080608;
   color: #fff;
   min-height: 100vh;
 `;

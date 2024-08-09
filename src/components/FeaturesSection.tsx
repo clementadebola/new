@@ -6,7 +6,7 @@ import mockup from '../assets/mockup.png';
 const FeatureSectionContainer = styled.section`
   background-color: #111;
   color: #fff;
-  height: 300vh; // Increased height to allow for scrolling
+  height: 300vh;
   position: relative;
 `;
 
@@ -25,8 +25,8 @@ const FeatureCard = styled(motion.div)`
   border-radius: 20px;
   padding: 3rem;
   display: flex;
-//   flex-direction: column;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   max-width: 850px;
   width: 90%;
@@ -34,23 +34,45 @@ const FeatureCard = styled(motion.div)`
   position: absolute;
   opacity: 0;
   transform-origin: center;
+  
+  @media (min-width: 768px) {
+    flex-direction: row;
+    padding: 4rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 2rem;
+  }
 `;
 
 const FeatureContent = styled.div`
   text-align: center;
   z-index: 2;
+
+  @media (min-width: 768px) {
+    text-align: left;
+    padding-right: 2rem;
+  }
 `;
 
 const FeatureTitle = styled.h2`
   font-size: 2.5rem;
   margin-bottom: 1rem;
   color: #f5f5f5;
+
+  @media (max-width: 480px) {
+    font-size: 2rem;
+  }
 `;
 
 const FeatureDescription = styled.p`
   font-size: 1.2rem;
   line-height: 1.5;
   color: #ccc;
+
+  @media (max-width: 480px) {
+    font-size: 1rem;
+  }
 `;
 
 const FeatureImage = styled(motion.img)`
@@ -58,6 +80,15 @@ const FeatureImage = styled(motion.img)`
   max-width: 250px;
   border-radius: 15px;
   margin-top: 1.5rem;
+
+  @media (min-width: 768px) {
+    max-width: 300px;
+    margin-top: 0;
+  }
+
+  @media (max-width: 480px) {
+    max-width: 200px;
+  }
 `;
 
 const featureData = [
