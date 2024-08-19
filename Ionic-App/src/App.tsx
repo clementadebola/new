@@ -30,7 +30,8 @@ import "@ionic/react/css/text-transformation.css";
 import "@ionic/react/css/flex-utils.css";
 import "@ionic/react/css/display.css";
 
-import { home, person, notifications } from "ionicons/icons";
+import { home, flash, statsChart, ellipsisHorizontal } from "ionicons/icons";
+// import styled from "styled-components";
 
 setupIonicReact();
 
@@ -38,36 +39,38 @@ const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonTabs>
-      {/* <Navbar/> */}
-      <IonRouterOutlet>
-        <Route exact path="/signin" component={SignIn} />
-        <Route exact path="/dashboard" component={Dashboard} />
-        <Route exact path="/search" component={Search} />
-        <Route exact path="/notify" component={Notify} />
-        <Route exact path="/profile" component={Profile} />
-        <Route exact path="/">
-          <Redirect to="/dashboard" />
-        </Route>
-      </IonRouterOutlet>
+        <IonRouterOutlet>
+          <Route exact path="/signin" component={SignIn} />
+          <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/search" component={Search} />
+          <Route exact path="/notify" component={Notify} />
+          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/">
+            <Redirect to="/dashboard" />
+          </Route>
+        </IonRouterOutlet>
 
-      <IonTabBar slot="bottom" >
-        <IonTabButton tab="dashboard" href="/dashboard">
-          <IonIcon icon={home} />
-          <IonLabel> Home </IonLabel>
-        </IonTabButton>
+        <IonTabBar slot="bottom">
+          <IonTabButton tab="blocking" href="/dashboard">
+            <IonIcon icon={home} color="primary" />
+            <IonLabel>Home</IonLabel>
+          </IonTabButton>
 
-        <IonTabButton tab="Profile" href="/profile">
-          <IonIcon icon={person} />
-          <IonLabel>Profile</IonLabel>
-        </IonTabButton>
+          <IonTabButton tab="strict-mode" href="/strict-mode">
+            <IonIcon icon={flash} />
+            <IonLabel>Strict Mode</IonLabel>
+          </IonTabButton>
 
-        <IonTabButton tab="Notify" href="/notify">
-          <IonIcon icon={notifications} />
-          <IonLabel> Notify </IonLabel>
-        </IonTabButton>
+          <IonTabButton tab="statistics" href="/statistics">
+            <IonIcon icon={statsChart} />
+            <IonLabel>Statistics</IonLabel>
+          </IonTabButton>
 
-      </IonTabBar>
-
+          <IonTabButton tab="more" href="/more">
+            <IonIcon icon={ellipsisHorizontal} />
+            <IonLabel>More</IonLabel>
+          </IonTabButton>
+        </IonTabBar>
       </IonTabs>
     </IonReactRouter>
   </IonApp>

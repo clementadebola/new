@@ -1,4 +1,3 @@
-// src/pages/Notify.tsx
 import React from 'react';
 import { IonContent, IonPage, IonHeader, IonToolbar, IonTitle, IonList, IonItem, IonLabel, IonAvatar, IonIcon } from '@ionic/react';
 import { personCircle } from 'ionicons/icons';
