@@ -46,11 +46,11 @@ const HeroSubtitle = styled(motion.p)`
 `;
 
 const CTAButton = styled(motion.button)`
-  background-color: #fff;
+  background-color: #ffff;
   color: #000;
   padding: 0.75rem 1.5rem;
   border: none;
-  border-radius: 4px;
+  border-radius: 10px;
   font-size: 1rem;
   cursor: pointer;
 
