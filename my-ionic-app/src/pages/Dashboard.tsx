@@ -16,7 +16,7 @@ import {
   IonFab,
   IonFabButton,
 } from '@ionic/react';
-import { chevronForward, personCircle, addCircle } from 'ionicons/icons';
+import { chevronForward, personCircle, addCircle, notifications } from 'ionicons/icons';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 
@@ -103,13 +103,20 @@ const Dashboard: React.FC = () => {
   const goToProfile = () => {
     history.push('/profile'); 
   };
+
+  const goToNotify = () => {
+    history.push('/notify');
+  }
   return (
     <StyledPage>
       <Header>
         <IonToolbar>
           <IonTitle>Dashboard</IonTitle>
-          <IonButton fill="clear" slot="end" onClick={goToProfile} >
-            <IonIcon icon={personCircle} size="large" />
+          <IonButton fill="clear" slot="end"  onClick={goToProfile} >
+            <IonIcon  icon={personCircle} size="large" />
+          </IonButton>
+          <IonButton fill="clear" slot="end" onClick={goToNotify} >
+             <IonIcon icon={notifications} size="large"/>
           </IonButton>
         </IonToolbar>
       </Header>
