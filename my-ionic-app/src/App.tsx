@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect, Route } from "react-router-dom";
+import { Redirect, Route, Switch} from "react-router-dom";
 import {
   IonApp,
   IonRouterOutlet,
@@ -19,6 +19,7 @@ import Profile from "./pages/Profile";
 import StatsPage from "./pages/StatsPage";
 import { home, flash, statsChart, ellipsisHorizontal } from "ionicons/icons";
 import './App.css';
+
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -43,6 +44,7 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
+          <Switch>
           <Route path="/signin" component={SignIn} exact={true} />
           <Route path="/dashboard" component={Dashboard} exact={true} />
           <Route path="/search" component={Search} exact={true} />
@@ -50,9 +52,9 @@ const App: React.FC = () => (
           <Route path="/profile" component={Profile} exact={true} />
           <Route path="/stats" component={StatsPage} exact={true} />
           <Route exact path="/" render={() => <Redirect to="/dashboard" />} />
+          </Switch>
         </IonRouterOutlet>
 
-  
         <IonTabBar slot="bottom" color={"dark"}>
         <IonTabButton tab="dashboard" href="/dashboard">
           <IonIcon icon={home}  />
@@ -62,7 +64,7 @@ const App: React.FC = () => (
           <IonIcon icon={flash} />
           <IonLabel>Strict Mode</IonLabel>
         </IonTabButton>
-        <IonTabButton tab="statistics" href="/stats">
+        <IonTabButton tab="stats" href="/stats">
           <IonIcon icon={statsChart} />
           <IonLabel>Statistics</IonLabel>
         </IonTabButton>

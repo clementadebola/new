@@ -44,7 +44,7 @@ const StatsPage = () => {
                   value={stats.activity.progress * 100}
                   text={`${Math.round(stats.activity.progress * 100)}%`}
                   styles={buildStyles({
-                    pathColor: '#82ca9d',
+                    pathColor: '#54C47E',
                     textColor: '#ffffff',
                     trailColor: '#2c2c2e',
                     strokeLinecap: 'round',
@@ -69,7 +69,7 @@ const StatsPage = () => {
                     <CartesianGrid strokeDasharray="3 3" vertical={false} />
                     <Tooltip />
                     <Legend />
-                    <Bar dataKey="usage" fill="#82ca9d" radius={[10, 10, 0, 0]} />
+                    <Bar dataKey="usage" fill="#8F46AC" radius={[10, 10, 0, 0]} />
                   </BarChartStyled>
                 </ResponsiveContainer>
               </WeeklyActivityChartContainer>
