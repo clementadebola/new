@@ -22,6 +22,7 @@ import '@ionic/react/css/display.css';
 
 import { IonReactRouter as Router } from '@ionic/react-router';
 
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
 <Router/>
