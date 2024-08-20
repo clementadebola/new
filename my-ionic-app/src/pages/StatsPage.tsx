@@ -12,13 +12,13 @@ const StatsPage = () => {
       progress: 0.7,
     },
     weeklyActivity: [
-      { date: 'Mon', usage: 120 },
+      { date: 'Mon', usage: 50 },
       { date: 'Tue', usage: 150 },
-      { date: 'Wed', usage: 180 },
+      { date: 'Wed', usage: 100 },
       { date: 'Thu', usage: 200 },
-      { date: 'Fri', usage: 220 },
+      { date: 'Fri', usage: 80 },
       { date: 'Sat', usage: 180 },
-      { date: 'Sun', usage: 160 },
+      { date: 'Sun', usage: 130 },
     ],
   });
 
@@ -146,6 +146,7 @@ const BarChartStyled = styled(BarChart)`
   .recharts-cartesian-axis-tick-line {
     display: none;
   }
+   
 
   .recharts-bar-rectangle {
     border-radius: 10px 10px 0 0;

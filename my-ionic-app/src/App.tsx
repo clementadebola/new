@@ -14,9 +14,10 @@ import { IonReactRouter } from "@ionic/react-router";
 import SignIn from "./pages/SignIn";
 import Dashboard from "./pages/Dashboard";
 import Search from "./components/Search";
-import Notify from "./pages/Notify";
+import Notify from "./components/Notify";
 import Profile from "./pages/Profile";
 import StatsPage from "./pages/StatsPage";
+import More from './pages/More';
 import { home, flash, statsChart, ellipsisHorizontal } from "ionicons/icons";
 import './App.css';
 
@@ -51,6 +52,7 @@ const App: React.FC = () => (
           <Route path="/notify" component={Notify} exact={true} />
           <Route path="/profile" component={Profile} exact={true} />
           <Route path="/stats" component={StatsPage} exact={true} />
+          <Route path="/more" component={More} exact={true} />
           <Route exact path="/" render={() => <Redirect to="/dashboard" />} />
           </Switch>
         </IonRouterOutlet>
