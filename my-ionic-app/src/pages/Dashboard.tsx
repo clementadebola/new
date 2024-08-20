@@ -31,7 +31,7 @@ const Header = styled(IonHeader)`
   ion-toolbar {
     --background: #1c1c1e;
     --color: #ffffff;
-    padding: 20px;
+    padding: 10px 10px;
     margin: 0 auto;
   }
 `;
