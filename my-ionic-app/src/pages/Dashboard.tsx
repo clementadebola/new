@@ -107,6 +107,13 @@ const AddTaskButton = styled(IonFab)`
   }
 `;
 
+const StyledModal = styled(IonModal)`
+  --ion-background-color: #090B22;
+  --ion-text-color: #ffffff;
+
+
+`
+
 const Dashboard: React.FC = () => {
   const history = useHistory();
   const [showModal, setShowModal] = useState(false);
@@ -184,7 +191,7 @@ const Dashboard: React.FC = () => {
           </IonFabButton>
         </AddTaskButton>
 
-        <IonModal isOpen={showModal} onDidDismiss={closeModal} color="primary">
+        <StyledModal isOpen={showModal} onDidDismiss={closeModal} >
           <IonHeader>
             <IonToolbar>
               <IonTitle>Create New Task</IonTitle>
@@ -216,7 +223,7 @@ const Dashboard: React.FC = () => {
               </IonRow>
             </IonGrid>
           </IonContent>
-        </IonModal>
+        </StyledModal>
       </IonContent>
     </StyledPage>
   );
