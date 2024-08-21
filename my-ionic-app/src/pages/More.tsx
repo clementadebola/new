@@ -33,7 +33,7 @@ import {
 import styled from "styled-components";
 
 const StyledPage = styled(IonPage)`
-  --ion-background-color: #1c1c1e;
+  --ion-background-color: #090B22;
   --ion-text-color: #ffffff;
 
 `;
@@ -64,7 +64,7 @@ const StyledHeadCard = styled.div`
   ion-card {
     width: 90%;
     border-radius: 16px;
-    --background: grey;
+    --background: #1c1c1e;
     margin: 0 auto 20px;
     height: 60px;
     padding: 10px 20px;
@@ -92,7 +92,7 @@ const StyledCard = styled.div`
   ion-card {
     width: 90%;
     border-radius: 16px;
-    --background: grey;
+    --background: #1c1c1e;
     margin: 0 auto 20px;
     height: 60px;
     padding: 10px 20px;

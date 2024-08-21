@@ -4,6 +4,7 @@ ion-tab-bar {
   border-radius: 16px;
   width: 92%;
   margin: 0 auto;
+  background: #090B22;
 }
 
 ion-tab-button {

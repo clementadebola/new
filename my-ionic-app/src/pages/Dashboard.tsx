@@ -23,13 +23,13 @@ import { useHistory } from 'react-router-dom';
 
 // Styled Components
 const StyledPage = styled(IonPage)`
-  --ion-background-color: #1c1c1e;
+  --ion-background-color: #090B22;
   --ion-text-color: #ffffff;
 `;
 
 const Header = styled(IonHeader)`
   ion-toolbar {
-    --background: #1c1c1e;
+    --background: #090B22;
     --color: #ffffff;
     padding: 10px 10px;
     margin: 0 auto;

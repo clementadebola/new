@@ -198,7 +198,7 @@ const StatsPage = () => {
 export default StatsPage;
 
 const StyledPage = styled(IonPage)`
-  --ion-background-color: #1c1c1e;
+  --ion-background-color: #090B22;
   --ion-text-color: #ffffff;
 
 `;
@@ -211,7 +211,7 @@ const Header = styled(IonHeader)`
 `;
 
 const WeeklyActivityCard = styled(IonCard)`
-  background-color: #2c2c2e;
+  background-color: #1c1c1e;
   color: #ffffff;
   border-radius: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
