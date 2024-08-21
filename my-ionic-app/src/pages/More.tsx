@@ -35,6 +35,7 @@ import styled from "styled-components";
 const StyledPage = styled(IonPage)`
   --ion-background-color: #1c1c1e;
   --ion-text-color: #ffffff;
+
 `;
 
 const Header = styled(IonHeader)`
