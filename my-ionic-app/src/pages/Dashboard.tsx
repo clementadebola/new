@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from "react";
 import {
   IonContent,
   IonPage,
@@ -15,21 +15,32 @@ import {
   IonToggle,
   IonFab,
   IonFabButton,
-} from '@ionic/react';
-import { chevronForward, personCircle, addCircle, notifications } from 'ionicons/icons';
-import styled from 'styled-components';
-import { useHistory } from 'react-router-dom';
-
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonInput,
+  IonSelect,
+  IonSelectOption,
+  IonModal,
+} from "@ionic/react";
+import {
+  chevronForward,
+  personCircle,
+  addCircle,
+  notifications,
+} from "ionicons/icons";
+import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 
 // Styled Components
 const StyledPage = styled(IonPage)`
-  --ion-background-color: #090B22;
+  --ion-background-color: #090b22;
   --ion-text-color: #ffffff;
 `;
 
 const Header = styled(IonHeader)`
   ion-toolbar {
-    --background: #090B22;
+    --background: #090b22;
     --color: #ffffff;
     padding: 10px 10px;
     margin: 0 auto;
@@ -62,7 +73,7 @@ const ProgressBar = styled.div<{ progress: number }>`
   position: relative;
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -97,26 +108,35 @@ const AddTaskButton = styled(IonFab)`
 `;
 
 const Dashboard: React.FC = () => {
-
-  const history = useHistory(); 
+  const history = useHistory();
+  const [showModal, setShowModal] = useState(false);
 
   const goToProfile = () => {
-    history.push('/profile'); 
+    history.push("/profile");
   };
 
   const goToNotify = () => {
-    history.push('/notify');
-  }
+    history.push("/notify");
+  };
+
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <StyledPage>
       <Header>
         <IonToolbar>
           <IonTitle>Dashboard</IonTitle>
-          <IonButton fill="clear" slot="end"  onClick={goToProfile} >
-            <IonIcon  icon={personCircle} size="large" />
+          <IonButton fill="clear" slot="end" onClick={goToProfile}>
+            <IonIcon icon={personCircle} size="large" />
           </IonButton>
-          <IonButton fill="clear" slot="end" onClick={goToNotify} >
-             <IonIcon icon={notifications} size="large"/>
+          <IonButton fill="clear" slot="end" onClick={goToNotify}>
+            <IonIcon icon={notifications} size="large" />
           </IonButton>
         </IonToolbar>
       </Header>
@@ -153,11 +173,50 @@ const Dashboard: React.FC = () => {
           </IonCardContent>
         </StyledCard>
 
-        <AddTaskButton vertical="bottom" horizontal="end" slot="fixed">
+        <AddTaskButton
+          onClick={openModal}
+          vertical="bottom"
+          horizontal="end"
+          slot="fixed"
+        >
           <IonFabButton>
             <IonIcon icon={addCircle} />
           </IonFabButton>
         </AddTaskButton>
+
+        <IonModal isOpen={showModal} onDidDismiss={closeModal} color="primary">
+          <IonHeader>
+            <IonToolbar>
+              <IonTitle>Create New Task</IonTitle>
+              <IonButton onClick={closeModal} slot="end" fill="clear">
+                Close
+              </IonButton>
+            </IonToolbar>
+          </IonHeader>
+          <IonContent>
+            <IonGrid>
+              <IonRow>
+                <IonCol>
+                  <IonInput placeholder="Task Name" />
+                </IonCol>
+              </IonRow>
+              <IonRow>
+                <IonCol>
+                  <IonSelect placeholder="Select App to Block">
+                    <IonSelectOption value="app1">App 1</IonSelectOption>
+                    <IonSelectOption value="app2">App 2</IonSelectOption>
+                    <IonSelectOption value="app3">App 3</IonSelectOption>
+                  </IonSelect>
+                </IonCol>
+              </IonRow>
+              <IonRow>
+                <IonCol>
+                  <IonButton expand="block">Create Task</IonButton>
+                </IonCol>
+              </IonRow>
+            </IonGrid>
+          </IonContent>
+        </IonModal>
       </IonContent>
     </StyledPage>
   );

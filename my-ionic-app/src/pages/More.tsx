@@ -31,6 +31,7 @@ import {
   logoTiktok,
 } from "ionicons/icons";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 
 const StyledPage = styled(IonPage)`
   --ion-background-color: #090B22;
@@ -57,6 +58,13 @@ const StyledSignInHead = styled.div`
   ion-text {
     font-size: 19px;
     text-align: center;
+  }
+
+  ion-label{
+
+  &:hover{
+  color: #504EBD;
+  }
   }
 `;
 
@@ -153,6 +161,10 @@ const StyledFooter = styled.div`
 `;
 
 const More = () => {
+  const history = useHistory();
+  const handleSignIn = () => {
+    history.push("/signin");
+    };
   return (
     <IonApp>
       <StyledPage>
@@ -167,7 +179,7 @@ const More = () => {
               <IonText>
                 you are not signed in, some features will not be available.
               </IonText>
-              <IonLabel color={"primary"}>
+              <IonLabel color={"primary"} onClick={handleSignIn}>
                 Sign in, or create an account
               </IonLabel>
             </StyledSignInHead>
