@@ -40,7 +40,7 @@ const StyledPage = styled(IonPage)`
 
 const Header = styled(IonHeader)`
   ion-toolbar {
-    --background: #1c1c1e;
+    --background: #090B22;
     --color: #ffffff;
   }
 `;
@@ -191,7 +191,7 @@ const More = () => {
                 <StyledCard>
                   <IonCard>
                     <IonIcon icon={diamond} />
-                    <IonLabel>Premium</IonLabel>
+                    <IonLabel color="warning" >Premium</IonLabel>
                     <IonIcon icon={arrowForwardSharp} color={"secondary"} />
                   </IonCard>
                 </StyledCard>

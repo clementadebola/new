@@ -1,17 +1,31 @@
-import React from 'react';
-import { IonContent, IonPage, IonHeader, IonToolbar, IonTitle, IonList, IonItem, IonLabel, IonAvatar, IonIcon } from '@ionic/react';
-import { personCircle } from 'ionicons/icons';
-import styled from 'styled-components';
+import React from "react";
+import {
+  IonContent,
+  IonPage,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonList,
+  IonItem,
+  IonLabel,
+  IonAvatar,
+  IonIcon,
+} from "@ionic/react";
+import { personCircle } from "ionicons/icons";
+import styled from "styled-components";
 
 const StyledPage = styled(IonPage)`
-  --ion-background-color: #1c1c1e;
+  --ion-background-color: #090b22;
   --ion-text-color: #ffffff;
 `;
 
 const Header = styled(IonHeader)`
   ion-toolbar {
-    --background: #1c1c1e;
+    --background: #090b22;
     --color: #ffffff;
+
+    padding: 10px 10px;
+    margin: 0 auto;
   }
 `;
 
@@ -47,7 +61,9 @@ const Notify: React.FC = () => {
             </IonAvatar>
             <IonLabel>
               <h2>Benjamin Poole</h2>
-              <NotificationText>When you have time, can you review the latest project files?</NotificationText>
+              <NotificationText>
+                When you have time, can you review the latest project files?
+              </NotificationText>
               <p>Nov 20th</p>
             </IonLabel>
           </StyledItem>
@@ -57,7 +73,9 @@ const Notify: React.FC = () => {
             </IonAvatar>
             <IonLabel>
               <h2>Katherine Wells</h2>
-              <NotificationText>Team meeting scheduled for tomorrow at 10 AM</NotificationText>
+              <NotificationText>
+                Team meeting scheduled for tomorrow at 10 AM
+              </NotificationText>
               <p>Nov 20th</p>
             </IonLabel>
           </StyledItem>
@@ -67,7 +85,9 @@ const Notify: React.FC = () => {
             </IonAvatar>
             <IonLabel>
               <h2>Bertha Barnes</h2>
-              <NotificationText>Are you planning to attend the conference next month?</NotificationText>
+              <NotificationText>
+                Are you planning to attend the conference next month?
+              </NotificationText>
               <p>Nov 20th</p>
             </IonLabel>
           </StyledItem>
@@ -77,7 +97,9 @@ const Notify: React.FC = () => {
             </IonAvatar>
             <IonLabel>
               <h2>Marie Brown</h2>
-              <NotificationText>New task assigned: Update product documentation</NotificationText>
+              <NotificationText>
+                New task assigned: Update product documentation
+              </NotificationText>
               <p>Nov 20th</p>
             </IonLabel>
           </StyledItem>

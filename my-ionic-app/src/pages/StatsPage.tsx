@@ -205,7 +205,7 @@ const StyledPage = styled(IonPage)`
 
 const Header = styled(IonHeader)`
   ion-toolbar {
-    --background: #1c1c1e;
+    --background: #090B22;
     --color: #ffffff;
   }
 `;

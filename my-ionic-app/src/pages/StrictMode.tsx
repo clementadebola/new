@@ -6,6 +6,7 @@ import {
   IonTitle,
   IonText,
   IonButton,
+  IonApp,
 } from "@ionic/react";
 import { flash } from "ionicons/icons";
 import styled from "styled-components";
@@ -63,11 +64,14 @@ const StrictModeButton = styled(IonButton)`
 
 const StrictMode = () => {
   return (
-    <StrictModePage>
+    <IonApp>
+          <StrictModePage>
       <StrictModeContent>
-        <StrictModeIcon>
+
+         <StrictModeIcon>
           <IonIcon icon={flash} size="large" />
         </StrictModeIcon>
+     
         <StrictModeTitle>Strict Mode</StrictModeTitle>
         <StrictModeDescription>
           Make it easier to stick to the blockings you've set.
@@ -75,6 +79,9 @@ const StrictMode = () => {
         <StrictModeButton>Explore</StrictModeButton>
       </StrictModeContent>
     </StrictModePage>
+
+    </IonApp>
+  
   );
 };
 
