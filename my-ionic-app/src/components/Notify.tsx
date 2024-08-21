@@ -10,7 +10,9 @@ import {
   IonLabel,
   IonAvatar,
   IonIcon,
+  IonButton,
 } from "@ionic/react";
+import { arrowBack } from 'ionicons/icons';
 import { personCircle } from "ionicons/icons";
 import styled from "styled-components";
 
@@ -18,6 +20,7 @@ const StyledPage = styled(IonPage)`
   --ion-background-color: #090b22;
   --ion-text-color: #ffffff;
 `;
+
 
 const Header = styled(IonHeader)`
   ion-toolbar {
@@ -49,6 +52,9 @@ const Notify: React.FC = () => {
     <StyledPage>
       <Header>
         <IonToolbar>
+        <IonButton slot="start" routerLink="/" fill="clear">
+            <IonIcon icon={arrowBack} />
+          </IonButton>
           <IonTitle>Notifications</IonTitle>
           <IonIcon icon={personCircle} slot="end" size="large" />
         </IonToolbar>

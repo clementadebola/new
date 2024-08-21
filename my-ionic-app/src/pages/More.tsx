@@ -185,7 +185,7 @@ const More = () => {
             </StyledSignInHead>
 
             <StyledHeadCard>
-              <IonCard>
+              <IonCard onClick={() => history.push("/coming-soon")}>
                 <IonIcon icon={library} color={"primary"} />
                 <IonLabel color="light">Academy</IonLabel>
                 <IonIcon icon={arrowForwardSharp} color={"secondary"} />
@@ -201,7 +201,7 @@ const More = () => {
             <IonRow>
               <IonCol size="12" sizeMd="6">
                 <StyledCard>
-                  <IonCard>
+                  <IonCard onClick={() => history.push("/premium")} >
                     <IonIcon icon={diamond} />
                     <IonLabel color="warning" >Premium</IonLabel>
                     <IonIcon icon={arrowForwardSharp} color={"secondary"} />
@@ -227,14 +227,14 @@ const More = () => {
               </IonCard>
             </StyledCard>
             <StyledCard>
-              <IonCard>
+              <IonCard  onClick={() => history.push("/settings")}>
                 <IonIcon color={"primary"} icon={settings} />
                 <IonLabel>Settings</IonLabel>
                 <IonIcon icon={arrowForwardSharp} color={"secondary"} />
               </IonCard>
             </StyledCard>
             <StyledCard>
-              <IonCard>
+              <IonCard  onClick={() => history.push("/coming-soon")}>
                 <IonIcon color={"primary"} icon={bonfire} />
                 <IonLabel>What's new</IonLabel>
                 <IonIcon icon={arrowForwardSharp} color={"secondary"} />

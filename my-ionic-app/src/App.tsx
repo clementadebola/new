@@ -15,10 +15,13 @@ import SignIn from "./pages/SignIn";
 import Dashboard from "./pages/Dashboard";
 import Search from "./components/Search";
 import Notify from "./components/Notify";
-import Profile from "./pages/Profile";
+import Profile from "./components/Profile";
 import StatsPage from "./pages/StatsPage";
 import More from './pages/More';
 import StrictMode from "./pages/StrictMode";
+import Settings from "./components/Settings";
+import PremiumPage from "./components/PremiumPage";
+import ComingSoon from "./components/ComingSoon";
 import { home, flash, statsChart, ellipsisHorizontal } from "ionicons/icons";
 import './App.css';
 
@@ -52,7 +55,10 @@ const App: React.FC = () => (
           <Route path="/profile" component={Profile} exact={true} />
           <Route path="/stats" component={StatsPage} exact={true} />
           <Route path="/more" component={More} exact={true} />
+          <Route path="/settings" component={Settings} exact={true} />
           <Route path="/strict-mode" component={StrictMode} exact={true} />
+          <Route path="/premium" component={PremiumPage} exact={true} />
+          <Route path="/coming-soon" component={ComingSoon} exact={true} />
           <Route exact path="/" render={() => <Redirect to="/dashboard" />} />
           </Switch>
         </IonRouterOutlet>

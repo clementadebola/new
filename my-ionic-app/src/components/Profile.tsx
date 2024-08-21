@@ -1,10 +1,11 @@
 import React from 'react';
-import { IonContent, IonPage, IonAvatar, IonButton } from '@ionic/react';
+import { IonContent, IonPage, IonAvatar, IonButton, IonHeader, IonToolbar, IonIcon, IonTitle } from '@ionic/react';
 import styled from 'styled-components';
+import { arrowBack } from 'ionicons/icons';
 
 const StyledPage = styled(IonPage)`
-  background-color: #2c2c44;
-  color: white;
+  --ion-background-color: #090b22;
+  --ion-text-color: #ffffff;
 `;
 
 const Container = styled.div`
@@ -38,6 +39,14 @@ const StyledButton = styled(IonButton)`
 const Profile: React.FC = () => {
   return (
     <StyledPage>
+      <IonHeader>
+        <IonToolbar>
+          <IonButton slot="start" routerLink="/" fill="clear">
+            <IonIcon icon={arrowBack} />
+          </IonButton>
+          <IonTitle>Profile</IonTitle>
+        </IonToolbar>
+      </IonHeader>
       <IonContent>
         <Container>
           <StyledAvatar>
