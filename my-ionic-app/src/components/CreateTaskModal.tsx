@@ -64,6 +64,7 @@ const CreateTaskModal: React.FC<CreateTaskModalProps> = ({ isOpen, onClose, onCr
           { name: 'Facebook', packageName: 'com.facebook.katana' },
           { name: 'Instagram', packageName: 'com.instagram.android' },
           { name: 'Twitter', packageName: 'com.twitter.android' },
+          { name: 'TikTok', packageName: 'com.zhiliaoapp.musically'},
           { name: 'TikTok', packageName: 'com.zhiliaoapp.musically' },
           { name: 'YouTube', packageName: 'com.google.android.youtube' },
         ]);
@@ -145,3 +146,4 @@ const CreateTaskModal: React.FC<CreateTaskModalProps> = ({ isOpen, onClose, onCr
 };
 
 export default CreateTaskModal;
+

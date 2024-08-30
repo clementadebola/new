@@ -14,12 +14,13 @@ import {
   IonLabel,
   IonFab,
   IonFabButton,
+  IonAlert,
 } from "@ionic/react";
 import {
-  chevronForward,
   personCircle,
   addCircle,
   notifications,
+  trash,
 } from "ionicons/icons";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
@@ -44,6 +45,7 @@ const Greeting = styled.h1`
   font-size: 20px;
   margin-bottom: 20px;
   padding: 0 20px;
+  color: #ffffff;
 `;
 
 const ProgressCard = styled(IonCard)`
@@ -51,11 +53,13 @@ const ProgressCard = styled(IonCard)`
   border-radius: 16px;
   margin: 20px;
   padding: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 `;
 
 const ProgressText = styled.p`
   font-size: 18px;
   margin-bottom: 10px;
+  color: #ffffff;
 `;
 
 const ProgressBar = styled.div<{ progress: number }>`
@@ -78,13 +82,16 @@ const ProgressBar = styled.div<{ progress: number }>`
 `;
 
 const StyledCard = styled(IonCard)`
-  --background: #2c2c2e;
+  background-color: #5656C0;
   border-radius: 16px;
   margin: 20px;
   padding: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 `;
 
-
+const StyledCardContent = styled(IonCardContent)`
+  padding: 16px;
+`;
 
 const AddTaskButton = styled(IonFab)`
   position: fixed;
@@ -96,11 +103,12 @@ const AddTaskButton = styled(IonFab)`
   }
 `;
 
-
-
 const Dashboard: React.FC = () => {
   const history = useHistory();
   const [showModal, setShowModal] = useState(false);
+  const [tasks, setTasks] = useState<Array<{ name: string, blockedApps: string[], blockedWebsites: string[] }>>([]);
+  const [taskToDelete, setTaskToDelete] = useState<number | null>(null);
+  const [showAlert, setShowAlert] = useState(false);
 
   const goToProfile = () => {
     history.push("/profile");
@@ -111,8 +119,13 @@ const Dashboard: React.FC = () => {
   };
 
   const handleCreateTask = (taskName: string, blockedApps: string[], blockedWebsites: string[]) => {
-    console.log('New task created:', { taskName, blockedApps, blockedWebsites });
-    // Here you would typically save the task to your state or database
+    setTasks([...tasks, { name: taskName, blockedApps, blockedWebsites }]);
+    setShowModal(false);
+  };
+
+  const handleDeleteTask = (index: number) => {
+    setTasks(tasks.filter((_, i) => i !== index));
+    setShowAlert(false);
   };
 
   return (
@@ -140,25 +153,34 @@ const Dashboard: React.FC = () => {
         </ProgressCard>
 
         <StyledCard>
-          <IonCardContent>
+          <StyledCardContent>
             <IonList>
-              <IonItem lines="full">
-                <IonLabel>Total Task</IonLabel>
-                <IonLabel slot="end">15</IonLabel>
-                <IonIcon icon={chevronForward} slot="end" />
-              </IonItem>
-              <IonItem lines="full">
-                <IonLabel>Completed</IonLabel>
-                <IonLabel slot="end">32</IonLabel>
-                <IonIcon icon={chevronForward} slot="end" />
-              </IonItem>
-              <IonItem lines="none">
-                <IonLabel>Total Projects</IonLabel>
-                <IonLabel slot="end">8</IonLabel>
-                <IonIcon icon={chevronForward} slot="end" />
-              </IonItem>
+              {tasks.length === 0 ? (
+                <IonItem>No tasks created yet</IonItem>
+              ) : (
+                tasks.map((task, index) => (
+                  <IonItem key={index}>
+                    <IonLabel>
+                      <h2>{task.name}</h2>
+                      <p>Blocked Apps: {task.blockedApps.join(', ')}</p>
+                      <p>Blocked Websites: {task.blockedWebsites.join(', ')}</p>
+                    </IonLabel>
+                    <IonButton 
+                      fill="clear" 
+                      color="danger" 
+                      slot="end"
+                      onClick={() => {
+                        setTaskToDelete(index);
+                        setShowAlert(true);
+                      }}
+                    >
+                      <IonIcon icon={trash} />
+                    </IonButton>
+                  </IonItem>
+                ))
+              )}
             </IonList>
-          </IonCardContent>
+          </StyledCardContent>
         </StyledCard>
 
         <AddTaskButton
@@ -176,6 +198,31 @@ const Dashboard: React.FC = () => {
           isOpen={showModal} 
           onClose={() => setShowModal(false)} 
           onCreateTask={handleCreateTask}
+        />
+
+        <IonAlert
+          isOpen={showAlert}
+          onDidDismiss={() => setShowAlert(false)}
+          header={'Confirm Delete'}
+          message={'Are you sure you want to delete this task?'}
+          buttons={[
+            {
+              text: 'Cancel',
+              role: 'cancel',
+              handler: () => {
+                setTaskToDelete(null);
+              }
+            },
+            {
+              text: 'Delete',
+              role: 'destructive',
+              handler: () => {
+                if (taskToDelete !== null) {
+                  handleDeleteTask(taskToDelete);
+                }
+              }
+            }
+          ]}
         />
       </IonContent>
     </StyledPage>

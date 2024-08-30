@@ -25,8 +25,23 @@ import {
 } from "recharts";
 import styled from "styled-components";
 
+interface WeeklyActivity {
+  date: string;
+  usage: number;
+}
+
+interface AppUsage {
+  app: string;
+  usage: string;
+}
+
+interface StatsData {
+  weeklyActivity: WeeklyActivity[];
+  appUsage: AppUsage[];
+}
+
 const StatsPage: React.FC = () => {
-  const [stats, setStats] = useState({
+  const [stats, setStats] = useState<StatsData>({
     weeklyActivity: [
       { date: "Mon", usage: 50 },
       { date: "Tue", usage: 150 },
@@ -44,15 +59,15 @@ const StatsPage: React.FC = () => {
   });
 
   const [selectedView, setSelectedView] = useState<"WEEK" | "USAGE TIME">("WEEK");
-  const [previousWeek, setPreviousWeek] = useState<typeof stats | null>(null);
+  const [previousWeek, setPreviousWeek] = useState<StatsData | null>(null);
 
   useEffect(() => {
     const fetchStats = async () => {
       const response = await fetch("/api/stats");
-      const data = await response.json();
+      const data: StatsData = await response.json();
       setStats(data);
 
-      const prevWeekData = {
+      const prevWeekData: StatsData = {
         weeklyActivity: data.weeklyActivity.map((_, index) => ({
           date: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"][index],
           usage: Math.floor(Math.random() * 200),
@@ -68,7 +83,7 @@ const StatsPage: React.FC = () => {
     setSelectedView(view);
   };
 
-  const calculateAverageUsage = (data: typeof stats["weeklyActivity"]) => {
+  const calculateAverageUsage = (data: WeeklyActivity[]) => {
     const totalMinutes = data.reduce((total, day) => total + day.usage, 0);
     const hours = Math.floor(totalMinutes / 60);
     const minutes = totalMinutes % 60;
@@ -112,7 +127,7 @@ const StatsPage: React.FC = () => {
                           data={
                             selectedView === "WEEK"
                               ? stats.weeklyActivity
-                              : previousWeek?.weeklyActivity
+                              : previousWeek?.weeklyActivity || []
                           }
                         >
                           <XAxis dataKey="date" />
