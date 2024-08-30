@@ -5,10 +5,7 @@ import {
   IonHeader,
   IonToolbar,
   IonTitle,
-  IonList,
-  IonItem,
   IonLabel,
-  IonAvatar,
   IonIcon,
   IonText,
   IonCard,
@@ -17,7 +14,6 @@ import {
   IonApp,
 } from "@ionic/react";
 import {
-  personCircle,
   library,
   arrowForwardSharp,
   diamond,
@@ -160,7 +156,7 @@ const StyledFooter = styled.div`
   }
 `;
 
-const More = () => {
+const More: React.FC = () => {
   const history = useHistory();
   const handleSignIn = () => {
     history.push("/signin");

@@ -12,7 +12,6 @@ import {
   IonButton,
   IonToolbar,
   IonIcon,
-  IonTitle,
   IonHeader,
 } from '@ionic/react';
 import styled from 'styled-components';

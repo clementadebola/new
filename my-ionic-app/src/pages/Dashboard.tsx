@@ -12,16 +12,8 @@ import {
   IonList,
   IonItem,
   IonLabel,
-  IonToggle,
   IonFab,
   IonFabButton,
-  IonGrid,
-  IonRow,
-  IonCol,
-  IonInput,
-  IonSelect,
-  IonSelectOption,
-  IonModal,
 } from "@ionic/react";
 import {
   chevronForward,
@@ -31,6 +23,7 @@ import {
 } from "ionicons/icons";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+import CreateTaskModal from '../components/CreateTaskModal';
 
 // Styled Components
 const StyledPage = styled(IonPage)`
@@ -91,11 +84,7 @@ const StyledCard = styled(IonCard)`
   padding: 16px;
 `;
 
-const TaskText = styled.p`
-  font-size: 16px;
-  color: #a9a9a9;
-  margin-bottom: 8px;
-`;
+
 
 const AddTaskButton = styled(IonFab)`
   position: fixed;
@@ -107,12 +96,7 @@ const AddTaskButton = styled(IonFab)`
   }
 `;
 
-const StyledModal = styled(IonModal)`
-  --ion-background-color: #090B22;
-  --ion-text-color: #ffffff;
 
-
-`
 
 const Dashboard: React.FC = () => {
   const history = useHistory();
@@ -126,12 +110,9 @@ const Dashboard: React.FC = () => {
     history.push("/notify");
   };
 
-  const openModal = () => {
-    setShowModal(true);
-  };
-
-  const closeModal = () => {
-    setShowModal(false);
+  const handleCreateTask = (taskName: string, blockedApps: string[], blockedWebsites: string[]) => {
+    console.log('New task created:', { taskName, blockedApps, blockedWebsites });
+    // Here you would typically save the task to your state or database
   };
 
   return (
@@ -181,7 +162,7 @@ const Dashboard: React.FC = () => {
         </StyledCard>
 
         <AddTaskButton
-          onClick={openModal}
+          onClick={() => setShowModal(true)}
           vertical="bottom"
           horizontal="end"
           slot="fixed"
@@ -191,39 +172,11 @@ const Dashboard: React.FC = () => {
           </IonFabButton>
         </AddTaskButton>
 
-        <StyledModal isOpen={showModal} onDidDismiss={closeModal} >
-          <IonHeader>
-            <IonToolbar>
-              <IonTitle>Create New Task</IonTitle>
-              <IonButton onClick={closeModal} slot="end" fill="clear">
-                Close
-              </IonButton>
-            </IonToolbar>
-          </IonHeader>
-          <IonContent>
-            <IonGrid>
-              <IonRow>
-                <IonCol>
-                  <IonInput placeholder="Task Name" />
-                </IonCol>
-              </IonRow>
-              <IonRow>
-                <IonCol>
-                  <IonSelect placeholder="Select App to Block">
-                    <IonSelectOption value="app1">App 1</IonSelectOption>
-                    <IonSelectOption value="app2">App 2</IonSelectOption>
-                    <IonSelectOption value="app3">App 3</IonSelectOption>
-                  </IonSelect>
-                </IonCol>
-              </IonRow>
-              <IonRow>
-                <IonCol>
-                  <IonButton expand="block">Create Task</IonButton>
-                </IonCol>
-              </IonRow>
-            </IonGrid>
-          </IonContent>
-        </StyledModal>
+        <CreateTaskModal 
+          isOpen={showModal} 
+          onClose={() => setShowModal(false)} 
+          onCreateTask={handleCreateTask}
+        />
       </IonContent>
     </StyledPage>
   );

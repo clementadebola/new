@@ -62,7 +62,7 @@ const StrictModeButton = styled(IonButton)`
   max-width: 240px;
 `;
 
-const StrictMode = () => {
+const StrictMode: React.FC = () => {
   return (
     <IonApp>
           <StrictModePage>

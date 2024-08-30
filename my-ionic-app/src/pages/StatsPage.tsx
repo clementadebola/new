@@ -21,12 +21,11 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
 } from "recharts";
 import styled from "styled-components";
 
-const StatsPage = () => {
+const StatsPage: React.FC = () => {
   const [stats, setStats] = useState({
     weeklyActivity: [
       { date: "Mon", usage: 50 },
@@ -44,19 +43,17 @@ const StatsPage = () => {
     ],
   });
 
-  const [selectedView, setSelectedView] = useState("WEEK");
-  const [previousWeek, setPreviousWeek] = useState(null);
+  const [selectedView, setSelectedView] = useState<"WEEK" | "USAGE TIME">("WEEK");
+  const [previousWeek, setPreviousWeek] = useState<typeof stats | null>(null);
 
   useEffect(() => {
-    // Fetch stats data from an API or generate random data
     const fetchStats = async () => {
       const response = await fetch("/api/stats");
       const data = await response.json();
       setStats(data);
 
-      // Calculate the previous week's data
       const prevWeekData = {
-        weeklyActivity: data.weeklyActivity.map((day, index) => ({
+        weeklyActivity: data.weeklyActivity.map((_, index) => ({
           date: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"][index],
           usage: Math.floor(Math.random() * 200),
         })),
@@ -67,8 +64,15 @@ const StatsPage = () => {
     fetchStats();
   }, []);
 
-  const handleViewChange = (view) => {
-    setSelectedView(view.toUpperCase());
+  const handleViewChange = (view: "WEEK" | "USAGE TIME") => {
+    setSelectedView(view);
+  };
+
+  const calculateAverageUsage = (data: typeof stats["weeklyActivity"]) => {
+    const totalMinutes = data.reduce((total, day) => total + day.usage, 0);
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes % 60;
+    return `${hours}h ${minutes}m`;
   };
 
   return (
@@ -80,24 +84,22 @@ const StatsPage = () => {
           </IonToolbar>
         </Header>
 
-        <IonContent fullscreen={true}>
+        <IonContent fullscreen>
           <IonGrid>
             <IonRow>
-              <IonCol size="12" sizeMd="12" sizeLg="12">
+              <IonCol size="12">
                 <WeeklyActivityCard>
                   <IonCardHeader>
                     <ViewSelectorContainer>
                       <IonButton
-                        onClick={() => handleViewChange("week")}
+                        onClick={() => handleViewChange("WEEK")}
                         className={selectedView === "WEEK" ? "active" : ""}
                       >
                         WEEK
                       </IonButton>
                       <IonButton
-                        onClick={() => handleViewChange("usage time")}
-                        className={
-                          selectedView === "USAGE TIME" ? "active" : ""
-                        }
+                        onClick={() => handleViewChange("USAGE TIME")}
+                        className={selectedView === "USAGE TIME" ? "active" : ""}
                       >
                         USAGE TIME
                       </IonButton>
@@ -113,56 +115,22 @@ const StatsPage = () => {
                               : previousWeek?.weeklyActivity
                           }
                         >
-                          <XAxis
-                            dataKey="date"
-                            axisLine={false}
-                            tickLine={false}
-                          />
-                          <YAxis
-                            type="number"
-                            domain={[0, "dataMax"]}
-                            axisLine={false}
-                            tickLine={false}
-                          />
-                          <CartesianGrid
-                            strokeDasharray="3 3"
-                            vertical={false}
-                          />
+                          <XAxis dataKey="date" />
+                          <YAxis domain={[0, "dataMax"]} />
+                          <CartesianGrid strokeDasharray="3 3" />
                           <Tooltip />
-                          <Bar
-                            dataKey="usage"
-                            fill="#8F46AC"
-                            radius={[10, 10, 0, 0]}
-                          />
+                          <Bar dataKey="usage" fill="#8F46AC" radius={[10, 10, 0, 0]} />
                         </BarChartStyled>
                       </ResponsiveContainer>
                     </WeeklyActivityChartContainer>
                     <DailyAverageContainer>
                       <DailyAverageText>Daily avg</DailyAverageText>
                       <DailyAverageValue>
-                        {selectedView === "WEEK"
-                          ? `${
-                              stats.weeklyActivity.reduce(
-                                (total, day) => total + day.usage,
-                                0
-                              ) / 7
-                            }h ${Math.floor(
-                              stats.weeklyActivity.reduce(
-                                (total, day) => total + day.usage,
-                                0
-                              ) % 60
-                            )}m`
-                          : `${
-                              previousWeek?.weeklyActivity.reduce(
-                                (total, day) => total + day.usage,
-                                0
-                              ) / 7
-                            }h ${Math.floor(
-                              previousWeek?.weeklyActivity.reduce(
-                                (total, day) => total + day.usage,
-                                0
-                              ) % 60
-                            )}m`}
+                        {calculateAverageUsage(
+                          selectedView === "WEEK"
+                            ? stats.weeklyActivity
+                            : previousWeek?.weeklyActivity || []
+                        )}
                       </DailyAverageValue>
                     </DailyAverageContainer>
                   </IonCardContentStyled>
@@ -181,9 +149,7 @@ const StatsPage = () => {
                         <AppUsage>{app.usage}</AppUsage>
                       </AppUsageItem>
                     ))}
-                    <BuyPremiumButton>
-                      Buy premium to see 102 more
-                    </BuyPremiumButton>
+                    <BuyPremiumButton>Buy premium to see 102 more</BuyPremiumButton>
                   </IonCardContentStyled>
                 </AppUsageCard>
               </IonCol>
@@ -198,14 +164,13 @@ const StatsPage = () => {
 export default StatsPage;
 
 const StyledPage = styled(IonPage)`
-  --ion-background-color: #090B22;
+  --ion-background-color: #090b22;
   --ion-text-color: #ffffff;
-
 `;
 
 const Header = styled(IonHeader)`
   ion-toolbar {
-    --background: #090B22;
+    --background: #090b22;
     --color: #ffffff;
   }
 `;
@@ -215,7 +180,6 @@ const WeeklyActivityCard = styled(IonCard)`
   color: #ffffff;
   border-radius: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease-in-out;
   overflow-y: auto;
   max-height: 600px;
 
@@ -272,10 +236,8 @@ const BarChartStyled = styled(BarChart)`
 const AppUsageCard = styled(IonCard)`
   background-color: #2c2c2e;
   color: #ffffff;
-  height: auto;
   border-radius: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease-in-out;
 `;
 
 const AppUsageItem = styled.div`
